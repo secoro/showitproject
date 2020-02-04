@@ -1,0 +1,145 @@
+/content/documents/myproject/events:
+  .meta:order-before: content
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+  jcr:uuid: d7aae9d5-8648-4419-9f5b-aa15cfe46a24
+  hippostd:foldertype: [new-events-document, new-events-folder]
+  hippotranslation:id: 382070df-18b0-45e5-a579-a3dabf5361cc
+  hippotranslation:locale: en
+  /2020:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+    jcr:uuid: 41da2b12-b1b2-4c8d-b52f-0c5b9ef5d2cc
+    hippostd:foldertype: [new-events-document, new-events-folder]
+    hippotranslation:id: ae65f405-25be-4bb9-a3cd-6064bd6cdc9c
+    hippotranslation:locale: en
+    /02:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+      jcr:uuid: 1834ac65-8d3d-447d-a894-2d01b711e096
+      hippostd:foldertype: [new-events-document, new-events-folder]
+      hippotranslation:id: eda79ede-8386-42bd-b0aa-4b2422265bcc
+      hippotranslation:locale: en
+      /breakfast:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: b8f5eb45-7200-452a-b26e-3118a0dc60b8
+        hippo:name: Breakfast
+        /breakfast:
+          jcr:primaryType: myproject:eventsdocument
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 3b1ec7aa-590d-4a54-9032-60bae7b3810c
+          hippo:availability: [live, preview]
+          hippostd:holder: admin
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2013-11-12T11:00:00+01:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T11:11:00+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
+          hippotranslation:id: c52a2e3b-ab03-4a06-9297-7d301256435e
+          hippotranslation:locale: en
+          myproject:date: 2013-11-12T08:00:00+01:00
+          myproject:documenttype: event
+          myproject:enddate: 2021-02-04T18:32:00+01:00
+          myproject:introduction: Start the day with a nice breakfast.
+          myproject:location: Room 101
+          myproject:title: Breakfast
+          /myproject:content:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <html>
+                        <body>
+
+                        <p>Breakfast is served starting from 8:00 until 9:30.</p>
+
+                        </body>
+                        </html>
+          /myproject:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c8f03498-56eb-46c9-83b2-cf014f2e03d7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /introduction-speech:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: 18e36c35-429d-4fee-b76e-eeabcbfc08bb
+        hippo:name: Introduction speech
+        /introduction-speech:
+          jcr:primaryType: myproject:eventsdocument
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: b8a9d5ad-2a56-41af-8c71-1dde809cbc2d
+          hippo:availability: [live, preview]
+          hippostd:holder: admin
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2013-11-12T11:02:00+01:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T11:16:00+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
+          hippotranslation:id: 698d56f2-1c4b-40dd-bfbe-56713294a88d
+          hippotranslation:locale: en
+          myproject:date: 2013-11-12T10:00:00+01:00
+          myproject:documenttype: event
+          myproject:enddate: 2021-02-04T18:32:00+01:00
+          myproject:introduction: After breakfast there will be an introductory speech.
+          myproject:location: Room 400
+          myproject:title: Introduction speech
+          /myproject:content:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <html>
+                        <body>
+
+                        <p>Speech will be about the workshop.</p>
+
+                        </body>
+                        </html>
+          /myproject:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9f32434e-84e3-4150-a6f2-d89a67be2fb1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /workshop:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 7a29ec60-2689-48b2-aca2-49696c5c23eb
+        /workshop:
+          jcr:primaryType: myproject:eventsdocument
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: af386efa-f0da-41a5-9747-df17aa0aee35
+          hippo:availability: [live, preview]
+          hippostd:holder: admin
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2013-11-12T11:16:00+01:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T11:18:00+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2013-11-12T12:16:00+01:00
+          hippotranslation:id: d8f7ba3f-35f8-4233-84fc-68cc038f5200
+          hippotranslation:locale: en
+          myproject:date: 2013-11-12T13:00:00+01:00
+          myproject:documenttype: event
+          myproject:enddate: 2021-02-04T18:32:00+01:00
+          myproject:introduction: Workshop starts at 1:00
+          myproject:location: Room 600
+          myproject:title: Workshop
+          /myproject:content:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <html>
+                        <body>
+                        <strong>Everybody </strong>
+                        <p>can join the workshop and start practicing what they learned during the last
+                        week.</p>
+
+                        </body>
+                        </html>
+          /myproject:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d035387b-f9ce-49f6-bcb0-9ab6915a2d5f
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []

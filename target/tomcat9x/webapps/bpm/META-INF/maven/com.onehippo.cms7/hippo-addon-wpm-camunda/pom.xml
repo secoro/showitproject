@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2017-2019 Hippo B.V. (http://www.onehippo.com)
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.onehippo.cms7</groupId>
+    <artifactId>hippo-addon-wpm-camunda-parent</artifactId>
+    <version>14.0.0</version>
+  </parent>
+
+  <name>Hippo Workflow Process Management Addon Camunda</name>
+  <description>Hippo Workflow Process Management Addon Camunda</description>
+  <artifactId>hippo-addon-wpm-camunda</artifactId>
+  <packaging>war</packaging>
+
+  <properties>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.onehippo.cms7</groupId>
+      <artifactId>hippo-enterprise-services</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.onehippo.cms7</groupId>
+      <artifactId>hippo-addon-wpm-camunda-engine</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.camunda.bpm.webapp</groupId>
+      <artifactId>camunda-webapp</artifactId>
+      <type>war</type>
+    </dependency>
+    <!-- without resteasy the Camunda app gives a classnotfound exception -->
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jaxrs</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-email</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+      <version>${jackson2.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-jaxb-annotations</artifactId>
+      <version>${jackson2.version}</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>overlays</directory>
+              <includes>
+                <includel>**/*</includel>
+              </includes>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <overlays>
+            <overlay>
+              <groupId>org.camunda.bpm.webapp</groupId>
+              <artifactId>camunda-webapp</artifactId>
+              <excludes>
+                <exclude>WEB-INF/lib/commons-fileupload-*.jar</exclude>
+                <exclude>WEB-INF/lib/commons-email-*.jar</exclude>
+                <exclude>WEB-INF/lib/jackson-*.jar</exclude>
+              </excludes>
+            </overlay>
+          </overlays>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>cargo.run</id>
+      <properties>
+        <sql.driver>org.h2.Driver</sql.driver>
+        <sql.username>sa</sql.username>
+        <sql.password />
+        <wpm.url>jdbc:h2:${repo.path}/hippo-bpm/hippo-bpm;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE</wpm.url>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>com.h2database</groupId>
+          <artifactId>h2</artifactId>
+          <version>${h2.database.version}</version>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-maven2-plugin</artifactId>
+            <configuration>
+              <configuration>
+                <properties>
+                  <catalina.servlet.uriencoding>UTF-8</catalina.servlet.uriencoding>
+                  <sql.driver>${sql.driver}</sql.driver>
+                  <sql.username>${sql.username}</sql.username>
+                  <sql.password>${sql.password}</sql.password>
+                  <wpm.url>${wpm.url}</wpm.url>
+                </properties>
+                <configfiles>
+                  <configfile>
+                    <file>${project.basedir}/conf/log4j2-dev.xml</file>
+                    <todir>conf/</todir>
+                    <tofile>log4j2.xml</tofile>
+                  </configfile>
+                  <configfile>
+                    <file>${project.basedir}/conf/context.xml</file>
+                    <todir>conf/</todir>
+                    <tofile>context.xml</tofile>
+                  </configfile>
+                </configfiles>
+              </configuration>
+              <deployables>
+                <deployable>
+                  <groupId>com.onehippo.cms7</groupId>
+                  <artifactId>hippo-addon-wpm-camunda</artifactId>
+                  <type>war</type>
+                  <properties>
+                    <context>/bpm</context>
+                  </properties>
+                </deployable>
+              </deployables>
+              <container>
+                <systemProperties>
+                  <log4j.configurationFile>file://${project.basedir}/conf/log4j2-dev.xml</log4j.configurationFile>
+                  <rebel.log4j2-plugin>true</rebel.log4j2-plugin>
+                </systemProperties>
+                <dependencies>
+                  <dependency>
+                    <groupId>com.onehippo.cms7</groupId>
+                    <artifactId>hippo-enterprise-services</artifactId>
+                    <classpath>extra</classpath>
+                  </dependency>
+                  <dependency>
+                    <groupId>org.onehippo.cms7</groupId>
+                    <artifactId>hippo-services</artifactId>
+                    <classpath>extra</classpath>
+                  </dependency>
+                  <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                  </dependency>
+                </dependencies>
+              </container>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

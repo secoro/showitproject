@@ -1,0 +1,21 @@
+/content/documents/administration/labels/global:
+  .meta:order-before: blog
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+  jcr:uuid: 96298f72-29de-4763-b75c-34a484b9411c
+  hippo:name: Global
+  /global:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: b5f36e02-e80c-4f1c-8c5d-9f00293087c6
+    hippo:availability: [live, preview]
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
+    hippostdpubwf:lastModificationDate: 2014-08-21T22:10:52.812+02:00
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2014-08-21T22:10:54.657+02:00
+    resourcebundle:descriptions: [Text shown in the global page footer.]
+    resourcebundle:id: essentials.global
+    resourcebundle:keys: [footer.text]
+    resourcebundle:messages: [©2020]

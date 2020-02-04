@@ -1,0 +1,2 @@
+*./mmdb filter=lfs diff=lfs merge=lfs -text
+cms/target/cms.war filter=lfs diff=lfs merge=lfs -text

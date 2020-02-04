@@ -1,0 +1,17 @@
+/*
+ * Copyright 2017 Hippo B.V. (http://www.onehippo.com)
+ */
+
+.navbar-brand {
+    /* hides the "Camunda Cockpit" text */
+    text-indent: -999em;
+    /* put your logo */
+    background-image: url(../../../images/bloomreach_small.png);
+    /* sets the width to match the logo's width */
+    width: 140px;
+}
+
+/* changes the header bottom border color  */
+[cam-widget-header] {
+    border-bottom-color: blue;
+}
