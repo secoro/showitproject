@@ -1,7 +1,8 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/mvn'
-  args: ['clean install']
-- name: 'gcr.io/cloud-builders/mvn'
-  args: ['-P docker.build', '--tag=gcr.io/incentro-developer/showcase-dxt-image', '.']
-images: ['gcr.io/incentro-developer/showcase-dxt-image']
+  args: ['-P docker.build']
+  
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['tag', 'gcr.io/incentro-developer/showcase-dxt-image:v0.0.2', '.']
+images: ['gcr.io/incentro-developer/showcase-dxt-image:v0.0.2']
