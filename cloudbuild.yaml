@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/incentro-developer/showcase-dxt-image', '.' ]
+images:
+- 'gcr.io/incentro-developer/showcase-dxt-image'
